@@ -3,18 +3,24 @@ import { StyleSheet, Text, View } from 'react-native';
 // import 'react-native-gesture-handler';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
+import store from './src/reducers';
+import { Provider } from 'react-redux'
 
-import { LoadingComp } from "./components";
+import { LoadingComp, userDataComp } from "./src/components";
 
 const Stack = createStackNavigator();
 
 function App() {
   return (
-    <NavigationContainer>
-      <Stack.Navigator initialRouteName="Loading">
-        <Stack.Screen name="Loading" component={LoadingComp} />
-      </Stack.Navigator> 
-    </NavigationContainer>
+    <Provider store={store}>
+      <NavigationContainer>
+        <Stack.Navigator initialRouteName="userData">
+          <Stack.Screen name="Loading" component={LoadingComp} />
+          <Stack.Screen name="userData" component={userDataComp} />
+        </Stack.Navigator>
+      </NavigationContainer>
+    </Provider>
+
   );
 }
 
